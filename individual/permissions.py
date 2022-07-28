@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsSeeker(permissions.BasePermission):
+class IsIndividual(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == 'list':
             return True
