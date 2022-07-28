@@ -6,7 +6,7 @@ from .serializers import JobPostSerializer, JobTypeSerializer, JobPostActivitySe
 from .filter_sets import JobPostFilter
 from rest_framework.permissions import IsAuthenticated
 from company.permissions import IsOwner
-from individual.permissions import IsIndividual
+from individual.permissions import IsIndividual, IsIndividualProvider
 from .permissions import JobPostPermission
 from django_filters import rest_framework as filters
 
@@ -20,9 +20,8 @@ class JobTypeViewSet(viewsets.ModelViewSet):
 class JobPostViewSet(viewsets.ModelViewSet):
     permission_classes = [
         IsAuthenticated, 
+        IsIndividualProvider |
         IsOwner,
-        IsIndividual,
-        JobPostPermission,
         ]
     queryset = JobPost.objects.all()
     serializer_class = JobPostSerializer
@@ -34,7 +33,7 @@ class JobPostActivityViewSet(viewsets.ModelViewSet):
     permission_classes = [
         IsAuthenticated, 
         IsOwner,
-        IsIndividual,
+        IsIndividualProvider,
         ]
     queryset = JobPostActivity.objects.all()
     serializer_class = JobPostActivitySerializer

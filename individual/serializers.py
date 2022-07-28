@@ -23,6 +23,7 @@ class IndividualProfileSerializer(WritableNestedModelSerializer):
             'primary_contact',
             'secondary_contact',
             'user',
+            'profile_type',
             'address'
         ]
 

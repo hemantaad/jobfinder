@@ -1,11 +1,25 @@
 from rest_framework import permissions
 
+from individual.models import IndividualProfile
+
 
 class IsIndividual(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == 'list':
             return True
         return request.user.user_type == "1"
+
+class IsIndividualProvider(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.user.user_type == "1":
+            profile = IndividualProfile.objects.get(user_id=request.user.id)
+            print(profile.profile_type)
+            if profile.profile_type == "2" or profile.profile_type == "3": 
+                return True
+            else:
+                return False
+        else:
+             return False
 
 
 class IndividualProfileEditPermission(permissions.BasePermission):

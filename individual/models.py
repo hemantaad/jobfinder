@@ -11,7 +11,7 @@ class IndividualProfile(models.Model):
     )
     profile_type = models.CharField(
         max_length=1,
-        choices=PROFILE_TYPE,
+        choices=PROFILE_TYPE, null=True, blank=True, default=None
     )
     image = models.ImageField(
         upload_to="media/individual", null=True, blank=True, default=None

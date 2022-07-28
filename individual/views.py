@@ -11,12 +11,11 @@ from jobs.serializers import JobPostSerializer
 from rest_framework import filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsIndividual, IndividualProfileEditPermission
+from .permissions import IsIndividual, IsIndividualProvider, IndividualProfileEditPermission
 
 
 class IndividualProfileViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated,
-                          IsIndividual, IndividualProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsIndividual, IndividualProfileEditPermission]
     queryset = IndividualProfile.objects.all()
     serializer_class = IndividualProfileSerializer
 
@@ -106,13 +105,13 @@ class Resume(APIView):
         user = self.request.user
         profile = IndividualProfile.objects.filter(user_id=user.id).all()
         experience = ExperienceDetail.objects.filter(
-            seeker_profile__user_id=user.id).all()
+            user_id=user.id).all()
         education = EducationDetail.objects.filter(
-            seeker_profile__user_id=user.id).all()
+            user_id=user.id).all()
         project = ProjectDetail.objects.filter(
-            seeker_profile__user_id=user.id).all()
+            user_id=user.id).all()
         training = TrainingDetail.objects.filter(
-            seeker_profile__user_id=user.id).all()
+            user_id=user.id).all()
         profile_serializer = IndividualProfileSerializer(profile, many=True)
         experience_serializer = ExperienceDetailSerializer(
             experience, many=True)
