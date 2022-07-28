@@ -1,23 +1,23 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
 
-from .models import SeekerProfile, Address, ExperienceDetail, JobCategory, JobLevel, EducationDetail, TrainingDetail, \
+from .models import IndividualProfile, Address, ExperienceDetail, JobCategory, JobLevel, EducationDetail, TrainingDetail, \
     ProjectDetail, SkillSet, SeekerSkillSet, SocialNetwork
 from company.models import JobPost
-from .serializers import SeekerProfileSerializer, AddressSerializer, ExperienceDetailSerializer, JobCategorySerializer, \
+from .serializers import IndividualProfileSerializer, AddressSerializer, ExperienceDetailSerializer, JobCategorySerializer, \
     JobLevelSerializer, EducationDetailSerializer, ProjectDetailSerializer, TrainingDetailSerializer, \
     SkillSetSerializer, SeekerSkillSetSerializer, SocialNetworkSerializer
 from company.serializers import JobPostSerializer
 from rest_framework import filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsSeeker, SeekerProfileEditPermission
+from .permissions import IsSeeker, IndividualProfileEditPermission
 
 
-class SeekerProfileViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
-    queryset = SeekerProfile.objects.all()
-    serializer_class = SeekerProfileSerializer
+class IndividualProfileViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
+    queryset = IndividualProfile.objects.all()
+    serializer_class = IndividualProfileSerializer
 
     def get_queryset(self):
         queryset = self.get_serializer_class().setup_eager_loading(self.queryset)
@@ -25,25 +25,25 @@ class SeekerProfileViewSet(viewsets.ModelViewSet):
 
 
 class AddressViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
 
 class JobCategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = JobCategory.objects.all()
     serializer_class = JobCategorySerializer
 
 
 class JobLevelViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = JobLevel.objects.all()
     serializer_class = JobLevelSerializer
 
 
 class ExperienceDetailViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = ExperienceDetail.objects.all()
     serializer_class = ExperienceDetailSerializer
 
@@ -53,37 +53,37 @@ class ExperienceDetailViewSet(viewsets.ModelViewSet):
 
 
 class EducationDetailViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = EducationDetail.objects.all()
     serializer_class = EducationDetailSerializer
 
 
 class ProjectDetailViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = ProjectDetail.objects.all()
     serializer_class = ProjectDetailSerializer
 
 
 class TrainingDetailViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = TrainingDetail.objects.all()
     serializer_class = TrainingDetailSerializer
 
 
 class SkillSetViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = SkillSet.objects.all()
     serializer_class = SkillSetSerializer
 
 
 class SeekerSkillSetViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = SeekerSkillSet.objects.all()
     serializer_class = SeekerSkillSetSerializer
 
 
 class SocialNetworkViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsSeeker, SeekerProfileEditPermission]
+    permission_classes = [IsAuthenticated, IsSeeker, IndividualProfileEditPermission]
     queryset = SocialNetwork.objects.all()
     serializer_class = SocialNetworkSerializer
 
@@ -93,12 +93,12 @@ class Resume(APIView):
     def get(self, request, format=None):
         serializer_list = []
         user = self.request.user
-        profile = SeekerProfile.objects.filter(user_id=user.id).all()
+        profile = IndividualProfile.objects.filter(user_id=user.id).all()
         experience = ExperienceDetail.objects.filter(seeker_profile__user_id=user.id).all()
         education = EducationDetail.objects.filter(seeker_profile__user_id=user.id).all()
         project = ProjectDetail.objects.filter(seeker_profile__user_id=user.id).all()
         training = TrainingDetail.objects.filter(seeker_profile__user_id=user.id).all()
-        profile_serializer = SeekerProfileSerializer(profile, many=True)
+        profile_serializer = IndividualProfileSerializer(profile, many=True)
         experience_serializer = ExperienceDetailSerializer(experience, many=True)
         education_serializer = EducationDetailSerializer(education, many=True)
         project_serializer = ProjectDetailSerializer(project, many=True)

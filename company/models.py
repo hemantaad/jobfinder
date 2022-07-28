@@ -1,5 +1,5 @@
 from django.db import models
-from seeker.models import SeekerProfile
+from individual.models import IndividualProfile
 from user.models import User, Address
 
 
@@ -38,7 +38,7 @@ class JobPost(models.Model):
 
 
 class JobPostActivity(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, on_delete=models.CASCADE)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE)
     apply_date = models.DateField(auto_now_add=True)
 

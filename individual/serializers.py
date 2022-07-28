@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import SeekerProfile, JobLevel, JobCategory, ExperienceDetail, EducationDetail, ProjectDetail, \
+from .models import IndividualProfile, JobLevel, JobCategory, ExperienceDetail, EducationDetail, ProjectDetail, \
     TrainingDetail, SkillSet, SeekerSkillSet, SocialNetwork
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from user.serializers import AddressSerializer
 
 
-class SeekerProfileSerializer(WritableNestedModelSerializer):
+class IndividualProfileSerializer(WritableNestedModelSerializer):
     address = AddressSerializer(required=True)
 
     @staticmethod
@@ -16,7 +16,7 @@ class SeekerProfileSerializer(WritableNestedModelSerializer):
         return queryset
 
     class Meta:
-        model = SeekerProfile
+        model = IndividualProfile
         fields = [
             'id',
             'date_of_birth',
@@ -106,7 +106,7 @@ class SocialNetworkSerializer(serializers.ModelSerializer):
 
 class ResumeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SeekerProfile, ExperienceDetail
+        model = IndividualProfile, ExperienceDetail
         fields = [
             'date_of_birth',
             'primary_contact',

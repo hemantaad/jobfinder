@@ -7,7 +7,7 @@ from .serializers import CompanyProfileSerializer, JobPostSerializer, JobTypeSer
 from .filter_sets import JobPostFilter
 from rest_framework.permissions import IsAuthenticated
 from .permissions import CompanyEditPermission, IsOwner, JobPostPermission, IsStaff
-from seeker.permissions import IsSeeker
+from individual.permissions import IsSeeker
 from django_filters import rest_framework as filters
 
 

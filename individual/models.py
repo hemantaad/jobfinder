@@ -2,10 +2,10 @@ from django.db import models
 from user.models import User, Address
 
 
-class SeekerProfile(models.Model):
+class IndividualProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
-        upload_to="media/seeker", null=True, blank=True, default=None
+        upload_to="media/individual", null=True, blank=True, default=None
     )
     date_of_birth = models.DateField()
     primary_contact = models.CharField(max_length=14)
@@ -17,7 +17,7 @@ class SeekerProfile(models.Model):
 
 
 class ExperienceDetail(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, related_name='seeker', on_delete=models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, related_name='individual', on_delete=models.CASCADE)
     organization_name = models.CharField(max_length=50)
     designation = models.CharField(max_length=50)
     starting_date = models.DateField()
@@ -45,7 +45,7 @@ class JobCategory(models.Model):
 
 
 class EducationDetail(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, models.CASCADE)
     specialization = models.CharField(max_length=50)
     starting_date = models.DateField()
     completion_date = models.DateField()
@@ -58,7 +58,7 @@ class EducationDetail(models.Model):
 
 
 class ProjectDetail(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, models.CASCADE)
     title = models.CharField(max_length=200)
     starting_date = models.DateField()
     completion_date = models.DateField()
@@ -66,7 +66,7 @@ class ProjectDetail(models.Model):
 
 
 class TrainingDetail(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, models.CASCADE)
     course_name = models.CharField(max_length=50)
     institute_name = models.CharField(max_length=100)
     starting_date = models.DateField()
@@ -96,12 +96,12 @@ class SeekerSkillSet(models.Model):
         max_length=1,
         choices=SKILL_LEVEL,
     )
-    seeker_profile = models.ForeignKey(SeekerProfile, models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, models.CASCADE)
     skill_set = models.ForeignKey(SkillSet, models.CASCADE)
 
 
 class SocialNetwork(models.Model):
-    seeker_profile = models.ForeignKey(SeekerProfile, models.CASCADE)
+    seeker_profile = models.ForeignKey(IndividualProfile, models.CASCADE)
     facebook = models.URLField(max_length=200)
     twitter = models.URLField(max_length=200)
     github = models.URLField(max_length=200)

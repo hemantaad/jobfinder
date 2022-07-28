@@ -8,7 +8,7 @@ class IsSeeker(permissions.BasePermission):
         return request.user.user_type == "1"
 
 
-class SeekerProfileEditPermission(permissions.BasePermission):
+class IndividualProfileEditPermission(permissions.BasePermission):
     message = 'Editing Profile is restricted to user only.'
 
     def has_object_permission(self, request, view, obj):

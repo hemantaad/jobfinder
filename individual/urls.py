@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import SeekerProfileViewSet, ExperienceDetailViewSet, EducationDetailViewSet, TrainingDetailViewSet, \
+from .views import IndividualProfileViewSet, ExperienceDetailViewSet, EducationDetailViewSet, TrainingDetailViewSet, \
     ProjectDetailViewSet, SearchListView, SeekerSkillSetViewSet, SkillSetViewSet, SocialNetworkViewSet, \
     RecommendJobs, Resume
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('profile', SeekerProfileViewSet, basename='seeker_profile')
+router.register('profile', IndividualProfileViewSet, basename='seeker_profile')
 router.register('experience', ExperienceDetailViewSet)
 router.register('education', EducationDetailViewSet)
 router.register('training', TrainingDetailViewSet)
