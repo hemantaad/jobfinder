@@ -7,7 +7,7 @@ class JobPostFilter(filters.FilterSet):
     class Meta:
         model = JobPost
         fields = {
-            "posted_by__user__name": ["exact"],
+            "posted_by__name": ["exact"],
             "job_type__job_type": ["exact"],
             "created_date": ["exact"],
         }

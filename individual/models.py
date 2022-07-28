@@ -4,6 +4,15 @@ from user.models import User, Address
 
 class IndividualProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    PROFILE_TYPE = (
+        ('1', 'Seeker'),
+        ('2', 'Provider'),
+        ('3', 'Both'),
+    )
+    profile_type = models.CharField(
+        max_length=1,
+        choices=PROFILE_TYPE,
+    )
     image = models.ImageField(
         upload_to="media/individual", null=True, blank=True, default=None
     )
