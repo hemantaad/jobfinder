@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'individual',
+    'jobs',
     'company',
     'debug_toolbar',
     'crispy_forms',

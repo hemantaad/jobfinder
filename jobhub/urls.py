@@ -8,6 +8,7 @@ urlpatterns = [
                   path('api/user/', include('user.urls')),
                   path('api/individual/', include('individual.urls')),
                   path('api/company/', include('company.urls')),
+                  path('api/jobs/', include('jobs.urls')),
                   path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
                   path('__debug__/', include('debug_toolbar.urls')),
 

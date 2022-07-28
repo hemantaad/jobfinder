@@ -3,11 +3,11 @@ from rest_framework.views import APIView
 
 from .models import IndividualProfile, Address, ExperienceDetail, JobCategory, JobLevel, EducationDetail, TrainingDetail, \
     ProjectDetail, SkillSet, SeekerSkillSet, SocialNetwork
-from company.models import JobPost
+from jobs.models import JobPost
 from .serializers import IndividualProfileSerializer, AddressSerializer, ExperienceDetailSerializer, JobCategorySerializer, \
     JobLevelSerializer, EducationDetailSerializer, ProjectDetailSerializer, TrainingDetailSerializer, \
     SkillSetSerializer, SeekerSkillSetSerializer, SocialNetworkSerializer
-from company.serializers import JobPostSerializer
+from jobs.serializers import JobPostSerializer
 from rest_framework import filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import CompanyProfile, JobPost
+from .models import CompanyProfile
 admin.site.register(CompanyProfile)
-admin.site.register(JobPost)
 
 # Register your models here.
