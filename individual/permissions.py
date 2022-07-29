@@ -7,7 +7,9 @@ class IsIndividual(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == 'list':
             return True
-        return request.user.user_type == "1"
+        else:
+            def has_object_permission(self, request, view, obj):
+                return obj.user.id == request.user.id and request.user.user_type == "1"
 
 class IsIndividualProvider(permissions.BasePermission):
     def has_permission(self, request, view):

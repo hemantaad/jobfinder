@@ -32,7 +32,7 @@ class JobPostViewSet(viewsets.ModelViewSet):
 class JobPostActivityViewSet(viewsets.ModelViewSet):
     permission_classes = [
         IsAuthenticated, 
-        IsOwner,
+        IsOwner|
         IsIndividualProvider,
         ]
     queryset = JobPostActivity.objects.all()

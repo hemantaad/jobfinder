@@ -10,7 +10,9 @@ class IsOwner(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == 'list':
             return True
-        return request.user.user_type == "2"
+        else:
+            def has_object_permission(self, request, view, obj):
+                return obj.user.id == request.user.id and request.user.user_type == "2"
 
 
 class CompanyEditPermission(permissions.BasePermission):
