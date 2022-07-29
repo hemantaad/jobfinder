@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'company',
     'debug_toolbar',
     'crispy_forms',
-
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
