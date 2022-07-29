@@ -8,11 +8,11 @@ class IsStaff(permissions.BasePermission):
 
 class IsOwner(permissions.BasePermission):
     def has_permission(self, request, view):
+        data = request.data
         if view.action == 'list':
             return True
-        else:
-            def has_object_permission(self, request, view, obj):
-                return obj.user.id == request.user.id and request.user.user_type == "2"
+            
+        return request.user.user_type == "2" and int(data['user']) == request.user.id
 
 
 class CompanyEditPermission(permissions.BasePermission):
