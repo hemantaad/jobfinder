@@ -7,7 +7,7 @@ class IsIndividual(permissions.BasePermission):
         if view.action == 'list':
             return True
 
-        return request.user.user_type == "1" and int(data['user']) == request.user.id
+        return request.user.user_type == "1" and int(data['posted_by']) == request.user.id
 
 class IsIndividualProvider(permissions.BasePermission):
     def has_permission(self, request, view):

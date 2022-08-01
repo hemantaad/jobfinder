@@ -13,9 +13,9 @@ class JobType(models.Model):
 class JobPost(models.Model):
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     job_type = models.ManyToManyField(JobType)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     job_description = models.TextField()
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.posted_by.name

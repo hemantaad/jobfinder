@@ -19,10 +19,10 @@ class JobTypeViewSet(viewsets.ModelViewSet):
 
 class JobPostViewSet(viewsets.ModelViewSet):
     permission_classes = [
-        IsAuthenticated, 
+        IsAuthenticated,
         IsIndividualProvider |
         IsOwner,
-        ]
+    ]
     queryset = JobPost.objects.all()
     serializer_class = JobPostSerializer
     filter_backends = [filters.DjangoFilterBackend]
@@ -31,10 +31,10 @@ class JobPostViewSet(viewsets.ModelViewSet):
 
 class JobPostActivityViewSet(viewsets.ModelViewSet):
     permission_classes = [
-        IsAuthenticated, 
-        IsOwner|
+        IsAuthenticated,
+        IsOwner |
         IsIndividualProvider,
-        ]
+    ]
     queryset = JobPostActivity.objects.all()
     serializer_class = JobPostActivitySerializer
 
@@ -45,4 +45,8 @@ class JobPostListView(generics.ListAPIView):
     serializer_class = JobPostSerializer
     filter_backends = [SearchFilter,
                        OrderingFilter, filters.DjangoFilterBackend]
-    search_fields = ['job_type__job_type', 'job_description']
+    search_fields = [
+        'job_type__job_type',
+        'job_description',
+        'posted_by__name'
+    ]

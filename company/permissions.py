@@ -9,10 +9,11 @@ class IsStaff(permissions.BasePermission):
 class IsOwner(permissions.BasePermission):
     def has_permission(self, request, view):
         data = request.data
+        print(data)
         if view.action == 'list':
             return True
             
-        return request.user.user_type == "2" and int(data['user']) == request.user.id
+        return request.user.user_type == "2" and int(data['posted_by']) == request.user.id
 
 
 class CompanyEditPermission(permissions.BasePermission):
